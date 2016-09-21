@@ -121,5 +121,35 @@ namespace Lesson6.Models
 
             return itemcount;
         }
+
+        public List<Cart> GetCartItems()
+        {
+            return _context.Carts.Where(
+                cart => cart.CartId == shoppingCartId).ToList();
+        }
+
+        public decimal GetTotal()
+        {
+            // Multiply album price by count of that album to get 
+            // the current price for each of those albums in the cart
+            // sum all album price totals to get the cart total
+            decimal? total = (from cartItems in _context.Carts
+                              where cartItems.CartId == shoppingCartId
+                              select (int?)cartItems.Count *
+                              cartItems.Product.Price).Sum();
+                              
+
+            return total ?? decimal.Zero;
+        }
+
+        public int GetCount()
+        {
+            // Get the count of each item in the cart and sum them up
+            int? count = (from cartItems in _context.Carts
+                          where cartItems.CartId == shoppingCartId
+                          select (int?)cartItems.Count).Sum();
+            // Return 0 if all entries are null
+            return count ?? 0;
+        }
     }
 }

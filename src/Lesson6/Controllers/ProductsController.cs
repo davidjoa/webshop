@@ -18,6 +18,8 @@ namespace Lesson6.Controllers
     {
         private readonly WebshopRepository _context;
         private readonly IStringLocalizer<WebshopRepository> _localizer;
+
+
         private async Task <IEnumerable<ProductViewModel>> ProductQuery(int? id)
         {
             if (id!=null)

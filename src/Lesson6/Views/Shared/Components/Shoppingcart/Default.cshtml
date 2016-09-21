@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Lesson6.Models.Shoppingcart>
+    <h3>Shoppingcart</h3>
+
+ <ul>
+ @foreach (var items in Model) {
+
+        <li>@items.Name</li>
+
+         }
+ </ul>
