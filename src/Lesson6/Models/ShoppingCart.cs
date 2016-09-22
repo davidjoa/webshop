@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,7 +97,7 @@ namespace Lesson6.Models
             var cartItem = _context.Carts.SingleOrDefault(
 
                 m => m.CartId == shoppingCartId &&
-                m.ItemId == id
+                m.ProductId == id
 
                 );
             int itemcount = 0;
@@ -124,8 +125,10 @@ namespace Lesson6.Models
 
         public List<Cart> GetCartItems()
         {
-            return _context.Carts.Where(
-                cart => cart.CartId == shoppingCartId).ToList();
+           
+
+            return _context.Carts.Where(cart => cart.CartId == shoppingCartId).Include(x=>x.Product).ToList();
+            
         }
 
         public decimal GetTotal()

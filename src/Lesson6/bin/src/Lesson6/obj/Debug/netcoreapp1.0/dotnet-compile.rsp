@@ -232,6 +232,7 @@ C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\UrlCu
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Controllers\HomeController.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Controllers\ProductCategoriesController.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Controllers\ProductsController.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Controllers\ShoppingCartController.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160907080156_FirstMigration.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160907080156_FirstMigration.Designer.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160907082558_SecondMigration.cs
@@ -242,12 +243,18 @@ C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migra
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160914113723_translations2.Designer.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160919162844_translationModels.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160919162844_translationModels.Designer.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160921181535_shoppingcart.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160921181535_shoppingcart.Designer.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\WebshopRepositoryModelSnapshot.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\Cart.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\Order.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\OrderDetail.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\Product.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\ProductCategory.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\ShoppingCart.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\WebshopRepository.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewComponents\ShoppingcartViewComponent.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ContactViewModel.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ProductViewModel.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ShoppingCartRemoveViewModel.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ShoppingCartViewModel.cs

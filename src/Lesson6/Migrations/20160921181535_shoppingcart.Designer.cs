@@ -8,9 +8,10 @@ using Lesson6.Models;
 namespace Lesson6.Migrations
 {
     [DbContext(typeof(WebshopRepository))]
-    partial class WebshopRepositoryModelSnapshot : ModelSnapshot
+    [Migration("20160921181535_shoppingcart")]
+    partial class shoppingcart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

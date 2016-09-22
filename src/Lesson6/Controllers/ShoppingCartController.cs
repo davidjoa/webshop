@@ -17,7 +17,7 @@ namespace Lesson6.Controllers
             _context = context;
 
         }
-
+        
         public IActionResult Index()
         {
             var cart = ShoppingCart.GetCart(_context, HttpContext);
@@ -32,8 +32,8 @@ namespace Lesson6.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        public IActionResult AddToCart(int id)
+        
+        public IActionResult AddToCart(int id, string returnUrl)
         {
             var addedProduct = _context.Products.Single(
 
@@ -45,10 +45,10 @@ namespace Lesson6.Controllers
 
             cart.AddToCart(addedProduct);
 
-            return RedirectToAction("Index");
+            return Redirect(returnUrl);
         }
 
-        [HttpPost]
+        
         public IActionResult RemoveFromCart (int id)
         {
 
