@@ -1,9 +1,12 @@
-﻿using Lesson6.Models;
+﻿
+using Lesson6.Models;
+using Lesson6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Lesson6.ViewComponents
 {
@@ -11,21 +14,25 @@ namespace Lesson6.ViewComponents
     public class ShoppingcartViewComponent : ViewComponent
     {
         
-        private readonly ShoppingCart _cart;
+        private readonly WebshopRepository _context;
 
-        public ShoppingcartViewComponent(ShoppingCart cart)
+        public ShoppingcartViewComponent(WebshopRepository context)
         {
-           _cart = cart;
+            _context = context;
         }
 
 
-        //public async Task<IViewComponentResult> InvokeAsync(ShoppingCart _cart)
-        //{
-        //    //var items = await ShoppingCart.GetCart();
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var itemCount = ShoppingCart.GetCart(_context, HttpContext);
 
-        //    return View(items);
-        //}
-     
+            int count = itemCount.GetCount();
+          
+            return View("Default",count);
+        }
+      
+
+
 
 
     }

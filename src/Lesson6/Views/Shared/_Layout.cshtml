@@ -29,13 +29,14 @@
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Webshop</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <div class= "navbar-collapse collapse">
+                <ul class="nav navbar-nav" @*"nav navbar-nav"*@>
                     
                     <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
                     <li><a asp-area="" asp-controller="ProductCategories" asp-action="Index">Product Categories</a></li>
-                    <li><a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shoppingcart</a>
-                 
+                    <li><a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shoppingcart<span class="badge" id="badge"> @await Component.InvokeAsync("Shoppingcart")</span> </a>
+                    
+                       
                     
                     </li>
 

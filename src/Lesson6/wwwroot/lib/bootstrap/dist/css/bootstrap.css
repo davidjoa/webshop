@@ -4913,14 +4913,14 @@ a.label:focus {
   background-color: #c9302c;
 }
 .badge {
-  display: inline-block;
+  display: inline-block; /*inline-block*/
   min-width: 10px;
-  padding: 3px 7px;
+  padding: 5px 1px 1px 0px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
   color: #fff;
-  text-align: center;
+  text-align: center;  
   white-space: nowrap;
   vertical-align: middle;
   background-color: #777;
@@ -4936,7 +4936,7 @@ a.label:focus {
 .btn-xs .badge,
 .btn-group-xs > .btn .badge {
   top: 0;
-  padding: 1px 5px;
+  padding: 4px 2px;
 }
 a.badge:hover,
 a.badge:focus {
