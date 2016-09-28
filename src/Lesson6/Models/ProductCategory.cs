@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Lesson6.Models
@@ -9,7 +10,7 @@ namespace Lesson6.Models
 
         [Required]
         public string ProductCategoryName { get; set; }
-
+        [JsonIgnore]
         public ICollection<Product> Products { get; set; }
     }
 }

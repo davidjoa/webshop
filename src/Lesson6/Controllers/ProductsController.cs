@@ -208,9 +208,9 @@ namespace Lesson6.Controllers
             p.ProductCategoryId = product.ProductCategoryId;
             p.ProductCategory = product.ProductCategory;
             p.Price = product.Price;
-            pt.ProductDescription = product.ProductName;
+            pt.ProductDescription = product.ProductDescription;
             pt.ProductName = product.ProductName;
-
+            
 
             if (ModelState.IsValid)
             {
