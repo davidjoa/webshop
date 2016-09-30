@@ -3,6 +3,7 @@
 
 
 @inject IViewLocalizer Localizer
+@inject Lesson6.Services.FixerCurrency fixer
 
 @{
     ViewData["Title"] = Localizer["About"];
@@ -27,60 +28,17 @@
 </form>
 
 
+@{ 
+    var Iso = fixer.GetIsoSymbol();
+    var exchangeRate = fixer.GetSEKToRate(Iso);
 
-@*<table class="table">
-    
-        <thead>
-           
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model =>model.Price) 
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductDescription)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductName)
-                    </th>
-                    <th>
-                       @Html.DisplayNameFor(model=>model.ProductCategory.ProductCategoryName)
-                    </th>
-                </tr>
-           
-    </thead>
-    <tbody>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> |
-                    <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">Add to cart</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>*@
-
+}
 
     @foreach (var item in Model)
     {
         <div class="col-md-3" id="divs">
-            <p>@Html.DisplayNameFor(model => model.Price):  @Html.DisplayFor(modelItem => item.Price)</p>
+            <p>@Html.DisplayNameFor(model => model.Price): @(item.Price*exchangeRate+" "+Iso) </p>
             <p>@Html.DisplayNameFor(model => model.ProductDescription): @Html.DisplayFor(modelItem => item.ProductDescription)</p>
             <p>@Html.DisplayNameFor(model => model.ProductName): @Html.DisplayFor(modelItem => item.ProductName)</p>
             <p>@Html.DisplayNameFor(model => model.ProductCategory.ProductCategoryName): @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)</p>
@@ -90,11 +48,55 @@
             <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">Add to cart</a>
 
         </div>
-
-
-
+        
     }
 
+<table class="table">
 
+            <thead>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model =>model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductDescription)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductName)
+                        </th>
+                        <th>
+                           @Html.DisplayNameFor(model=>model.ProductCategory.ProductCategoryName)
+                        </th>
+                    </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       @(item.Price * exchangeRate + " " + Iso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> |
+                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">Add to cart</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 

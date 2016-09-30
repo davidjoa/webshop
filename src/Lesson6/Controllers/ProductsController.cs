@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using Lesson6.ViewModels;
+using System.Net.Http;
+using Lesson6.Services;
 
 namespace Lesson6.Controllers
 {
@@ -88,9 +90,19 @@ namespace Lesson6.Controllers
         // GET: Products    
 
         public async Task<IActionResult> Index(string searchString)
-        {        
-
+        {
+            
             var products = await ProductQuery(null);
+
+            var Iso = new RegionInfo(CultureInfo.CurrentCulture.Name).ISOCurrencySymbol;
+
+            //FixerCurrency.GetSEKToRate(Iso);
+
+            
+
+
+            
+
 
             if (!string.IsNullOrEmpty(searchString))
             {

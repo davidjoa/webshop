@@ -14,6 +14,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Options;
+using Lesson6.Services;
 
 namespace Lesson6
 {
@@ -46,6 +47,7 @@ namespace Lesson6
             services.AddDbContext<WebshopRepository>(options => options.UseSqlServer(connection));
             
             services.AddTransient<IDateTime,SystemDateTime>();
+            services.AddSingleton<FixerCurrency>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             //services.AddSingleton<IDateTime,SystemDateTime>();
             
@@ -56,12 +58,12 @@ namespace Lesson6
             {
                 var supportedCultures = new[] {
 
-                    new CultureInfo("sv"),
-                    new CultureInfo("en")
+                    new CultureInfo("sv-SE"),
+                    new CultureInfo("en-GB")
 
                 };
 
-                options.DefaultRequestCulture = new RequestCulture(culture: "en");
+                options.DefaultRequestCulture = new RequestCulture(culture: "en-GB");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
 

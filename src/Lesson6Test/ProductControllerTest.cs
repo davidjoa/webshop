@@ -204,7 +204,3 @@
 
 //}
 
-//Testa Model.IsValid
-//var controller = new ProductController(context);
-//context.ModelState.AddError("test","test");
-//Act....
