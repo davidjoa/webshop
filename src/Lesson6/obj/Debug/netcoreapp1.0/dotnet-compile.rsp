@@ -246,6 +246,8 @@ C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migra
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160919162844_translationModels.Designer.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160921181535_shoppingcart.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160921181535_shoppingcart.Designer.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160930073524_pictureURL update.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\20160930073524_pictureURL update.Designer.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Migrations\WebshopRepositoryModelSnapshot.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\Cart.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\Order.cs
@@ -255,6 +257,7 @@ C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Model
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\ShoppingCart.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Models\WebshopRepository.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Services\FixerCurrency.cs
+C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\Services\Klarna.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewComponents\ShoppingcartViewComponent.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ContactViewModel.cs
 C:\Users\Joakim\documents\visual studio 2015\Projects1\Lesson6\src\Lesson6\ViewModels\ProductViewModel.cs

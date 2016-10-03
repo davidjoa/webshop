@@ -15,6 +15,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+   
   
 </head>
 <body>
@@ -30,17 +31,16 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Webshop</a>
             </div>
             <div class= "navbar-collapse collapse">
-                <ul class="nav navbar-nav" @*"nav navbar-nav"*@>
+                <ul class="nav navbar-nav">
                     
                     <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
                     <li><a asp-area="" asp-controller="ProductCategories" asp-action="Index">Product Categories</a></li>
-                    <li><a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shoppingcart<span class="badge" id="badge"> @await Component.InvokeAsync("Shoppingcart")</span> </a>
+                    <li><a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shoppingcart</a></li>
                     
-                       
-                    
-                    </li>
 
                 </ul>
+               <span id="shopnum"> @await Component.InvokeAsync("Shoppingcart")</span>
+               
               
             </div>
         </div>
@@ -50,14 +50,10 @@
        
         <hr />
         <footer>
-            <div class="row">
-                <div class="col-md-6">                    
-                </div>
-                <div class="col-md-6 text-right">
-                    @await Html.PartialAsync("_SelectLanguagePartial")
-                </div>
-            </div>
+          
+            
             <p>&copy; 2016 - Webshop</p>
+            <span class="pull-right">@await Html.PartialAsync("_SelectLanguagePartial")</span>  
         </footer>
     </div>
 

@@ -37,14 +37,42 @@ textarea {
     display: none
   }
 }
-.badge{
+#shopnum{
+    color:darkgray;
+    
+    font-size:30px;
 
-margin-left:4px;
 }
 
 #divs {
-
-    border: 1px groove;
-    margin: 3px 3px 3px 3px; 
+    width:300px;
+    height:300px;
+    border: 1px groove;    
+    margin:0px 3px 3px 0px; 
+    background-color:lightgray;
+    padding: 5px 5px 5px 5px;
+   
 
 }
+
+
+#pics{
+ 
+width:200px;
+display:block;
+margin-left:auto;
+margin-right:auto;
+
+ 
+}
+
+
+
+#innerdiv{
+
+   vertical-align:middle;
+   text-align:center;
+  
+}
+
+

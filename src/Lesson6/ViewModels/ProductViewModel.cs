@@ -12,9 +12,9 @@ namespace Lesson6.ViewModels
         public int ProductCategoryId { get; set; }
         public decimal Price { get; set; }
         public ProductCategory ProductCategory { get; set; }
-
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
+        public string PictureURL { get; set; }
    
     }
 }

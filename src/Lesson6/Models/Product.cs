@@ -21,6 +21,8 @@ namespace Lesson6.Models
 
         // Foreign key
         public int ProductCategoryId { get; set; }
+
+        public string PictureURL { get; set; }
         public ProductCategory ProductCategory {get; set;}
 
         [Required]

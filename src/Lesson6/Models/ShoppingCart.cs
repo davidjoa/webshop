@@ -127,7 +127,7 @@ namespace Lesson6.Models
         {
            
 
-            return _context.Carts.Where(cart => cart.CartId == shoppingCartId).Include(x=>x.Product).ToList();
+            return _context.Carts.Where(cart => cart.CartId == shoppingCartId).Include(x=>x.Product).ThenInclude(z=>z.Translations).ToList();
             
         }
 
@@ -154,5 +154,7 @@ namespace Lesson6.Models
             // Return 0 if all entries are null
             return count ?? 0;
         }
+
+        
     }
 }

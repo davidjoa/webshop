@@ -4913,18 +4913,19 @@ a.label:focus {
   background-color: #c9302c;
 }
 .badge {
-  display: inline-block; /*inline-block*/
-  min-width: 10px;
-  padding: 5px 1px 1px 0px;
+  display: inline-block; 
+  min-width: 20px;
+  padding: 5px 1px 0px 0px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
   color: #fff;
-  text-align: center;  
+  text-align: center; 
   white-space: nowrap;
   vertical-align: middle;
   background-color: #777;
   border-radius: 10px;
+ margin-top:12px;
 }
 .badge:empty {
   display: none;

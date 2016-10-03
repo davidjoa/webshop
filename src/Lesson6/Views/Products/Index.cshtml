@@ -38,14 +38,20 @@
     @foreach (var item in Model)
     {
         <div class="col-md-3" id="divs">
-            <p>@Html.DisplayNameFor(model => model.Price): @(item.Price*exchangeRate+" "+Iso) </p>
-            <p>@Html.DisplayNameFor(model => model.ProductDescription): @Html.DisplayFor(modelItem => item.ProductDescription)</p>
-            <p>@Html.DisplayNameFor(model => model.ProductName): @Html.DisplayFor(modelItem => item.ProductName)</p>
-            <p>@Html.DisplayNameFor(model => model.ProductCategory.ProductCategoryName): @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)</p>
-            <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
-            <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
-            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">Add to cart</a>
+            
+                @*<p>@Html.DisplayNameFor(model => model.ProductDescription): @Html.DisplayFor(modelItem => item.ProductDescription)</p>*@
+
+                @*<p>@Html.DisplayNameFor(model => model.ProductCategory.ProductCategoryName): @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)</p>*@
+                <img src="@Url.Content(item.PictureURL)"  id="pics" />
+
+            <div id="innerdiv">
+                <p>@*@Html.DisplayNameFor(model => model.ProductName):*@ @Html.DisplayFor(modelItem => item.ProductName)</p>
+                <p>@*@Html.DisplayNameFor(model => model.Price):*@ @(item.Price * exchangeRate + " " + Iso) </p>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">Add to cart</a>
+            </div>
 
         </div>
         

@@ -39,7 +39,8 @@ namespace Lesson6.Controllers
                                    ProductDescription = pt.ProductDescription,
                                    ProductCategoryId = p.ProductCategoryId,
                                    ProductCategory = p.ProductCategory,
-                                   Price = p.Price
+                                   Price = p.Price,
+                                   PictureURL=p.PictureURL
                                };
 
               return await product.ToListAsync();
@@ -60,7 +61,8 @@ namespace Lesson6.Controllers
                                ProductDescription = pt.ProductDescription,
                                ProductCategoryId = p.ProductCategoryId,
                                ProductCategory = p.ProductCategory,
-                               Price = p.Price
+                               Price = p.Price,
+                               PictureURL=p.PictureURL
                            }; 
                             
            
@@ -93,16 +95,7 @@ namespace Lesson6.Controllers
         {
             
             var products = await ProductQuery(null);
-
-            var Iso = new RegionInfo(CultureInfo.CurrentCulture.Name).ISOCurrencySymbol;
-
-            //FixerCurrency.GetSEKToRate(Iso);
-
             
-
-
-            
-
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -147,7 +140,8 @@ namespace Lesson6.Controllers
             {
                 Price=product.Price,
                 ProductCategory=product.ProductCategory,
-                ProductCategoryId=product.ProductCategoryId
+                ProductCategoryId=product.ProductCategoryId,
+                PictureURL=product.PictureURL
                
             };
 
@@ -220,6 +214,7 @@ namespace Lesson6.Controllers
             p.ProductCategoryId = product.ProductCategoryId;
             p.ProductCategory = product.ProductCategory;
             p.Price = product.Price;
+            p.PictureURL = product.PictureURL;
             pt.ProductDescription = product.ProductDescription;
             pt.ProductName = product.ProductName;
             
