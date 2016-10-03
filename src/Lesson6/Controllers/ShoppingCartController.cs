@@ -91,40 +91,51 @@ namespace Lesson6.Controllers
 
         public IActionResult CheckOut()
         {
+
+            //foreach (var item in ShoppingCart.GetCart(_context, HttpContext).GetCartItems())
+
             var cartItems = new List<Dictionary<string, object>>();
+
 
             foreach (var item in ShoppingCart.GetCart(_context, HttpContext).GetCartItems())
             {
 
-                new Dictionary<string, object>
-                {
-                     { "reference", item.ProductId },
-                    { "name", item.Product.Translations.Where(z=>z.Language==getCulture(item.Product)) },
-                    { "quantity", item.Count },
-                    { "unit_price", item.Product.Price },
-                    { "discount_rate", 0 },
-                    { "tax_rate", 0 }
 
-                };
-
+                cartItems.Add(
                 new Dictionary<string, object>
-                {
-                    { "type", "shipping_fee" },
-                    { "reference", "SHIPPING" },
-                    { "name", "Shipping Fee" },
-                    { "quantity", 1 },
-                    { "unit_price", 4900 },
-                    { "tax_rate", 2500 }
-                };
+                    {
+                         { "reference", item.ProductId.ToString()},
+                        { "name",item.Product.Translations.Where(z=>z.Language==getCulture(item.Product)) },
+                        { "quantity", item.Count },
+                        { "unit_price",(Convert.ToInt32(item.Product.Price))*100},
+                        { "discount_rate", 0 },
+                        { "tax_rate", 2500 }
+
+                });
+                
             }
+
+
+            cartItems.Add(
+            new Dictionary<string, object>
+              {
+                        { "type", "shipping_fee" },
+                        { "reference", "SHIPPING" },
+                        { "name", "Shipping Fee" },
+                        { "quantity", 1 },
+                        { "unit_price", 4900 },
+                        { "tax_rate", 2500 }
+
+          });
 
             var cart = new Dictionary<string, object> { { "items", cartItems } };
 
-            var data = new Dictionary<string, object>
+                var data = new Dictionary<string, object>
         {
             { "cart", cart }
         };
 
+            
 
             var merchant = new Dictionary<string, object>
     {
@@ -188,8 +199,9 @@ namespace Lesson6.Controllers
                 JObject gui = JObject.Parse(getresponsebody);
 
                 snippet = gui["gui"]["snippet"].ToString();
-            }  
-            
+            }
+
+            ViewBag.snippet = snippet;
               
             return View("CheckOut",snippet);
           
