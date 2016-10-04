@@ -144,9 +144,10 @@ namespace Lesson6.Controllers
                 PictureURL=product.PictureURL
                
             };
-
+           
             _context.Add(p);
             _context.SaveChanges();
+            
 
             ProductTranslation pt = new ProductTranslation
             {
@@ -155,24 +156,17 @@ namespace Lesson6.Controllers
                 ProductName=product.ProductName,
                 Language=CultureInfo.CurrentUICulture.TwoLetterISOLanguageName,
                 ProductId=p.ProductId
-               
-            
+                           
             };
 
+           
             _context.Add(pt);
             _context.SaveChanges();
 
-            //if (ModelState.IsValid)
-            //{                
-            //    _context.Add(p);
-            //    _context.Add(pt);
-                
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction("Index");
-            //}
+            
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "ProductCategoryId", "ProductCategoryName", product.ProductCategoryId);
             return RedirectToAction("Index");
-            // return View(product);
+            
         }
 
         // GET: Products/Edit/5

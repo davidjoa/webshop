@@ -36,7 +36,7 @@ namespace Lesson6.Controllers
         private string CreateAuthorization(string data)
 
         {
-            //base64(hex(sha256 (request_payload + shared_secret)))
+           
             using (var algorithm = SHA256.Create())  {
 
                 var hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(data));
@@ -91,9 +91,7 @@ namespace Lesson6.Controllers
 
         public IActionResult CheckOut()
         {
-
-            //foreach (var item in ShoppingCart.GetCart(_context, HttpContext).GetCartItems())
-
+            
             var cartItems = new List<Dictionary<string, object>>();
 
 
@@ -148,7 +146,7 @@ namespace Lesson6.Controllers
         },
         {
             "confirmation_uri",
-            "http://localhost:5000/thankyou" +
+            "http://localhost:5000/OrderConfirmed" +
             "?klarna_order_id={checkout.order.id}"
         },
         {
@@ -205,6 +203,13 @@ namespace Lesson6.Controllers
               
             return View("CheckOut",snippet);
           
+
+        }
+
+        public IActionResult OrderConfirmed(string klarna_order_id)
+        {
+
+            return View("");
 
         }
     }

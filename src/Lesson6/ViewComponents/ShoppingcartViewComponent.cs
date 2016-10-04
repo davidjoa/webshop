@@ -24,7 +24,7 @@ namespace Lesson6.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var itemCount = ShoppingCart.GetCart(_context, HttpContext);
+            var itemCount =  ShoppingCart.GetCart(_context, HttpContext);
 
             int count = itemCount.GetCount();
           

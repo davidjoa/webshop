@@ -7,18 +7,10 @@ namespace Lesson6.Models
     public class Product
     {
 
-        public int ProductId { get; set; }
-
-        //[Display(Name ="Product name"), Required(ErrorMessage ="The product name field is required.")]        
-        //public string ProductName { get; set; }
-
-        [DataType(DataType.Currency), Range(0.1, 10000.0, ErrorMessage = "Hold your horses!")]
+        public int ProductId { get; set; }        
+    
         public decimal Price { get; set; }
-
-        //[Display(Name ="Product Description"),Required(ErrorMessage ="The product description field is requried.")]
-        //public string ProductDescription { get; set; }
-
-
+        
         // Foreign key
         public int ProductCategoryId { get; set; }
 

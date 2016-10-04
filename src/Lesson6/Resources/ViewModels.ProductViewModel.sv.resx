@@ -120,6 +120,9 @@
   <data name="Hold your horses!" xml:space="preserve">
     <value>Maximalt 10000</value>
   </data>
+  <data name="The price field is required" xml:space="preserve">
+    <value>Obligatoriskt fält</value>
+  </data>
   <data name="The product description field is requried." xml:space="preserve">
     <value>Obligatoriskt fält</value>
   </data>
