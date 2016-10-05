@@ -48,6 +48,7 @@ namespace Lesson6.Controllers
 
         private string SharedSecret = "tE94QeKzSdUVJGe";
 
+        private static HttpClient Client = new HttpClient();
         public IActionResult Index()
         {
             var cart = ShoppingCart.GetCart(_context, HttpContext);
@@ -146,7 +147,7 @@ namespace Lesson6.Controllers
         },
         {
             "confirmation_uri",
-            "http://localhost:5000/OrderConfirmed" +
+            "http://localhost:5000/ShoppingCart/OrderConfirmed" +
             "?klarna_order_id={checkout.order.id}"
         },
         {
@@ -162,9 +163,7 @@ namespace Lesson6.Controllers
             data.Add("merchant", merchant);
 
             var jsondata = JsonConvert.SerializeObject(data);        
-
-            HttpClient client = new HttpClient();
-
+            
             HttpRequestMessage message = new HttpRequestMessage();
 
             message.RequestUri = new Uri("https://checkout.testdrive.klarna.com/checkout/orders");
@@ -173,7 +172,7 @@ namespace Lesson6.Controllers
             message.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(jsondata + SharedSecret));
             message.Content = new StringContent(jsondata, Encoding.UTF8, "application/vnd.klarna.checkout.aggregated-order-v2+json");
 
-            var response = client.SendAsync(message).Result;
+            var response = Client.SendAsync(message).Result;
             var snippet = "";
 
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
@@ -191,7 +190,7 @@ namespace Lesson6.Controllers
                 getmessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.klarna.checkout.aggregated-order-v2+json"));
                 getmessage.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(SharedSecret));
 
-                var getresponse = client.SendAsync(getmessage).Result;
+                var getresponse = Client.SendAsync(getmessage).Result;
                 var getresponsebody = getresponse.Content.ReadAsStringAsync().Result;
 
                 JObject gui = JObject.Parse(getresponsebody);
@@ -208,9 +207,25 @@ namespace Lesson6.Controllers
 
         public IActionResult OrderConfirmed(string klarna_order_id)
         {
+            HttpRequestMessage getmessage = new HttpRequestMessage();
+            getmessage.RequestUri = new Uri("https://checkout.testdrive.klarna.com/checkout/orders" + "/"+klarna_order_id);
+            getmessage.Method = HttpMethod.Get;
 
-            return View("");
+            getmessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.klarna.checkout.aggregated-order-v2+json"));
+            getmessage.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(SharedSecret));
 
-        }
+            var getresponse = Client.SendAsync(getmessage).Result;
+            var getresponsebody = getresponse.Content.ReadAsStringAsync().Result;
+
+            JObject gui = JObject.Parse(getresponsebody);
+
+          var snippet = gui["gui"]["snippet"].ToString();
+        
+
+          ViewBag.snippet = snippet;
+              
+            return View("OrderConfirmed", snippet);
+
+    }
     }
 }
