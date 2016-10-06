@@ -75,4 +75,22 @@ margin-right:auto;
   
 }
 
+#l{
 
+    float:left;
+    
+}
+#r{
+    float:right;
+}
+
+#shopping{
+
+display:block;
+margin-left:auto;
+margin-right:auto;
+ border: 1px groove;
+ text-align:center;
+ vertical-align:middle;
+
+}

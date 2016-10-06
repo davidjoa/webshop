@@ -19,27 +19,27 @@ namespace Lesson6.Controllers
 
     public class HomeControllerTest
     {
-        [Fact]
-        public void HomeControllerContactTest()
-        {
-            //Arrange
-            var datetime = new StaticDateTime();
-            var controller = new HomeController();
+        //[Fact]
+        //public void HomeControllerContactTest()
+        //{
+        //    //Arrange
+        //    var datetime = new StaticDateTime();
+        //    var controller = new HomeController();
 
-            //Act
-            var result = controller.Contact(datetime);
+        //    //Act
+        //    var result = controller.Contact(datetime);
 
 
-            //Assert
+        //    //Assert
             
-            var viewResult = Assert.IsType<ViewResult>(result);
+        //    var viewResult = Assert.IsType<ViewResult>(result);
 
-            var model = Assert.IsAssignableFrom<ContactViewModel>(viewResult.ViewData.Model);
-            //  Assert.Equal(datetime.Now,viewResult.ViewData["Message"]);
-            Assert.Equal(datetime.Now.ToString(), model.CurrentDateAndTime);
-            Assert.Equal(2, model.Names.Count());
-            Assert.Equal("Joakim", model.Names.ElementAt(0));
+        //    var model = Assert.IsAssignableFrom<ContactViewModel>(viewResult.ViewData.Model);
+        //    //  Assert.Equal(datetime.Now,viewResult.ViewData["Message"]);
+        //    Assert.Equal(datetime.Now.ToString(), model.CurrentDateAndTime);
+        //    Assert.Equal(2, model.Names.Count());
+        //    Assert.Equal("Joakim", model.Names.ElementAt(0));
 
-        }
+        //}
     }
 }

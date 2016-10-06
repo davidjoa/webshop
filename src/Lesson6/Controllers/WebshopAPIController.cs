@@ -34,7 +34,7 @@ namespace Lesson6.Controllers
         [HttpGet("{id}",Name ="Getproduct")]
         public IActionResult GetByID(int id)
         {
-            var product = _context.Products.Include(x=>x.Translations).Where(x => x.ProductId == id);
+            var product = _context.Products.Include(x=>x.Translations).SingleOrDefault(x => x.ProductId == id);
             if (product==null)
             {
                 return NotFound();
@@ -51,8 +51,8 @@ namespace Lesson6.Controllers
             {
                 Price = product.Price,
                 ProductCategory = product.ProductCategory,
-                ProductCategoryId = product.ProductCategoryId
-
+                ProductCategoryId = product.ProductCategoryId,
+                PictureURL=product.PictureURL
             };
 
             _context.Add(p);

@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
+using Lesson6.Services;
 
 namespace Lesson6.Controllers
 {
@@ -92,137 +93,40 @@ namespace Lesson6.Controllers
 
         public IActionResult CheckOut()
         {
+            var cart = ShoppingCart.GetCart(_context, HttpContext);
+            Klarna k = new Klarna();
             
-            var cartItems = new List<Dictionary<string, object>>();
-
-
-            foreach (var item in ShoppingCart.GetCart(_context, HttpContext).GetCartItems())
-            {
-
-
-                cartItems.Add(
-                new Dictionary<string, object>
-                    {
-                         { "reference", item.ProductId.ToString()},
-                        { "name",item.Product.Translations.Where(z=>z.Language==getCulture(item.Product)) },
-                        { "quantity", item.Count },
-                        { "unit_price",(Convert.ToInt32(item.Product.Price))*100},
-                        { "discount_rate", 0 },
-                        { "tax_rate", 2500 }
-
-                });
-                
-            }
-
-
-            cartItems.Add(
-            new Dictionary<string, object>
-              {
-                        { "type", "shipping_fee" },
-                        { "reference", "SHIPPING" },
-                        { "name", "Shipping Fee" },
-                        { "quantity", 1 },
-                        { "unit_price", 4900 },
-                        { "tax_rate", 2500 }
-
-          });
-
-            var cart = new Dictionary<string, object> { { "items", cartItems } };
-
-                var data = new Dictionary<string, object>
-        {
-            { "cart", cart }
-        };
-
+            var response = k.PostRequest(k.createJsonData(cart));
             
-
-            var merchant = new Dictionary<string, object>
-    {
-        { "id", "5160" },
-        { "back_to_store_uri", "http://localhost:5000/" },
-        { "terms_uri", "http://localhost:5000/terms" },
-        {
-            "checkout_uri",
-            "http://localhost:5000/checkout"
-        },
-        {
-            "confirmation_uri",
-            "http://localhost:5000/ShoppingCart/OrderConfirmed" +
-            "?klarna_order_id={checkout.order.id}"
-        },
-        {
-            "push_uri",
-            "http://localhost:5000/push" +
-            "?klarna_order_id={checkout.order.id}"
-        }
-    };
-
-            data.Add("purchase_country", "SE");
-            data.Add("purchase_currency", "SEK");
-            data.Add("locale", "sv-se");
-            data.Add("merchant", merchant);
-
-            var jsondata = JsonConvert.SerializeObject(data);        
-            
-            HttpRequestMessage message = new HttpRequestMessage();
-
-            message.RequestUri = new Uri("https://checkout.testdrive.klarna.com/checkout/orders");
-            message.Method = HttpMethod.Post;
-            message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.klarna.checkout.aggregated-order-v2+json"));
-            message.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(jsondata + SharedSecret));
-            message.Content = new StringContent(jsondata, Encoding.UTF8, "application/vnd.klarna.checkout.aggregated-order-v2+json");
-
-            var response = Client.SendAsync(message).Result;
             var snippet = "";
 
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
 
                 var location = response.Headers.Location.AbsoluteUri;
-
-
+                
                 //hämta ordern
 
-                HttpRequestMessage getmessage = new HttpRequestMessage();
-                getmessage.RequestUri = new Uri(location);
-                getmessage.Method = HttpMethod.Get;
-
-                getmessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.klarna.checkout.aggregated-order-v2+json"));
-                getmessage.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(SharedSecret));
-
-                var getresponse = Client.SendAsync(getmessage).Result;
-                var getresponsebody = getresponse.Content.ReadAsStringAsync().Result;
-
-                JObject gui = JObject.Parse(getresponsebody);
-
-                snippet = gui["gui"]["snippet"].ToString();
+                snippet = k.GetRequest(location);
+            
             }
-
+            
             ViewBag.snippet = snippet;
               
             return View("CheckOut",snippet);
           
-
         }
 
         public IActionResult OrderConfirmed(string klarna_order_id)
         {
-            HttpRequestMessage getmessage = new HttpRequestMessage();
-            getmessage.RequestUri = new Uri("https://checkout.testdrive.klarna.com/checkout/orders" + "/"+klarna_order_id);
-            getmessage.Method = HttpMethod.Get;
+            string stdUri = "https://checkout.testdrive.klarna.com/checkout/orders";
 
-            getmessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.klarna.checkout.aggregated-order-v2+json"));
-            getmessage.Headers.Authorization = new AuthenticationHeaderValue("Klarna", CreateAuthorization(SharedSecret));
+            Klarna k = new Klarna();
+            var snippet = k.GetRequest(stdUri +"/"+ klarna_order_id);
 
-            var getresponse = Client.SendAsync(getmessage).Result;
-            var getresponsebody = getresponse.Content.ReadAsStringAsync().Result;
+            ShoppingCart.EmptyCartCookie(HttpContext);
 
-            JObject gui = JObject.Parse(getresponsebody);
-
-          var snippet = gui["gui"]["snippet"].ToString();
-        
-
-          ViewBag.snippet = snippet;
+            ViewBag.snippet = snippet;
               
             return View("OrderConfirmed", snippet);
 

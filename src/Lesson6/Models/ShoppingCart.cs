@@ -30,7 +30,13 @@ namespace Lesson6.Models
 
             return cart;
         }
+        public static void EmptyCartCookie(HttpContext context)
+        {
 
+            context.Response.Cookies.Delete("cartId");
+            
+
+        }
         public string GetCartId(HttpContext context)
         {
             string cartid;
@@ -122,7 +128,7 @@ namespace Lesson6.Models
 
             return itemcount;
         }
-
+        
         public List<Cart> GetCartItems()
         {
            

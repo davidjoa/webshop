@@ -19,7 +19,7 @@ namespace Lesson6.Controllers
     public class ProductsController : Controller
     {
         private readonly WebshopRepository _context;
-        private readonly IStringLocalizer<WebshopRepository> _localizer;
+      //  private readonly IStringLocalizer<WebshopRepository> _localizer;
 
 
         private async Task <IEnumerable<ProductViewModel>> ProductQuery(int? id)
@@ -71,10 +71,10 @@ namespace Lesson6.Controllers
         }
 
 
-        public ProductsController(WebshopRepository context, IStringLocalizer<WebshopRepository> localizer)
+        public ProductsController(WebshopRepository context/*, IStringLocalizer<WebshopRepository> localizer*/)
         {
             _context = context;
-            _localizer = localizer;    
+           // _localizer = localizer;    
         }
 
         [HttpPost]
@@ -136,36 +136,43 @@ namespace Lesson6.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel product)
         {
-            Product p = new Product
-            {
-                Price=product.Price,
-                ProductCategory=product.ProductCategory,
-                ProductCategoryId=product.ProductCategoryId,
-                PictureURL=product.PictureURL
+
+                if (ModelState.IsValid)
+                {
+
+                        Product p = new Product
+                        {
+                            Price=product.Price,
+                            ProductCategory=product.ProductCategory,
+                            ProductCategoryId=product.ProductCategoryId,
+                            PictureURL=product.PictureURL
                
-            };
+                        };
            
-            _context.Add(p);
-            _context.SaveChanges();
+                        _context.Add(p);
+                        _context.SaveChanges();
             
 
-            ProductTranslation pt = new ProductTranslation
-            {
+                        ProductTranslation pt = new ProductTranslation
+                        {
                
-                ProductDescription=product.ProductDescription,
-                ProductName=product.ProductName,
-                Language=CultureInfo.CurrentUICulture.TwoLetterISOLanguageName,
-                ProductId=p.ProductId
+                            ProductDescription=product.ProductDescription,
+                            ProductName=product.ProductName,
+                            Language=CultureInfo.CurrentUICulture.TwoLetterISOLanguageName,
+                            ProductId=p.ProductId
                            
-            };
+                        };
 
            
-            _context.Add(pt);
-            _context.SaveChanges();
+                        _context.Add(pt);
+                        _context.SaveChanges();
 
             
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "ProductCategoryId", "ProductCategoryName", product.ProductCategoryId);
-            return RedirectToAction("Index");
+                        ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "ProductCategoryId", "ProductCategoryName", product.ProductCategoryId);
+                        return RedirectToAction("Index");
+             }
+
+            return View(product);
             
         }
 

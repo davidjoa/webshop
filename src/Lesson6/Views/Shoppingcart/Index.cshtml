@@ -3,17 +3,21 @@
 
 
 <p>@Html.DisplayNameFor(model=>model.CartItems)</p>
-<p>@Html.DisplayFor(model=>model.CartItems.Count)</p>
+
         
 @foreach(var item in Model.CartItems)
 {
+    <div class="col-md-3">
+<div id="shopping">
     
     <p>@item.Product.Price</p>
     <p>@item.Count</p>
-
+    
     <p>
         <a asp-action="RemoveFromCart" asp-route-id="@item.ProductId">Delete</a>
     </p>
+</div>
+    </div>
 }
 
 <a asp-controller="ShoppingCart" asp-action="CheckOut">Pay</a>
